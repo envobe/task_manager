@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}MuskTask{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="#"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'webpages/style.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{#    <!--<script src="{% static 'music/js/main.js' %}"></script> -->#}
+</head>
+
+
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'base_visitor' %}">SwiftWeb</a>
+        </div>
+
+        <!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+{#            <ul class="nav navbar-nav">#}
+{#                <li class="{% block samples_active %}{% endblock %}"><a href="{% url 'webpages:index' %}"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp; Samples</a></li>#}
+                {#                #}
+{#            </ul>#}
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="{% block register_active %}{% endblock %}"><a href="{% url 'tasks:register' %}">Register</a></li>
+                <li class="{% block login_active %}{% endblock %}"><a href="{% url 'tasks:login_user' %}">Log In</a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+{% block body %}
+{% endblock %}
+
+
+<h2 class="h22">Simple Task Manager</h2>
+
+        <div class="panel-footer">
+                    Don't have an account? <a href="{% url 'tasks:register' %}">Click here</a> to register.
+        </div>
+
+</body>
+</html>

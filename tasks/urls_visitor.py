@@ -3,4 +3,7 @@ from .import views
 
 
 
-urlpatterns = []
+urlpatterns = [
+
+url(r'^$', views.VisitorView.as_view(), name='base_visitor'),
+]
