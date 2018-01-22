@@ -21,12 +21,12 @@ urlpatterns = [
     url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
     #
     # # /webpages/sample/add/
-    url(r'sample/add/$', views.TaskCreate.as_view(), name='sample-add'),
+    url(r'task/add/$', views.TaskCreate.as_view(), name='task-add'),
     #
     # # /webpages/sample/2/
-    url(r'sample/(?P<pk>[0-9]+)/$', views.TaskUpdate.as_view(), name='sample-update'),
+    url(r'task/(?P<pk>[0-9]+)/$', views.TaskUpdate.as_view(), name='task-update'),
     #
     # # /webpages/sample/2/delete/
-    url(r'sample/(?P<pk>[0-9]+)/delete/$', views.TaskDelete.as_view(), name='sample-delete'),
+    url(r'task/(?P<pk>[0-9]+)/delete/$', views.TaskDelete.as_view(), name='task-delete'),
 
 ]

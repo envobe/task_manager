@@ -43,6 +43,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         print(self.request.user)
         return Task.objects.filter(user=self.request.user)
+        #return Task.objects.all()
 
 
 class DetailView(LoginRequiredMixin, generic.DeleteView):
@@ -58,7 +59,7 @@ class TaskCreate(LoginRequiredMixin, CreateView):
     redirect_field_name = 'redirect_to'
 
     model = Task
-    fields = ['task_title']
+    fields = ['task_title', 'task_description', 'task_due_date']
 
     def form_valid(self, form):
         object = form.save(commit=False)
@@ -71,7 +72,7 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
     redirect_field_name = 'redirect_to'
 
     model = Task
-    fields = ['task_title']
+    fields = ['task_title', 'task_description', 'task_due_date']
 
     def form_valid(self, form):
         object = form.save(commit=False)
@@ -88,12 +89,12 @@ class TaskDelete(LoginRequiredMixin, DeleteView):
 
 class UserFormView(View):
     form_class = UserForm
-    template_name = 'tasks/registration_form.html'
+    template_name = 'tasks/register.html'
 
     #display blank form
     def get(self, request):
         form = self.form_class(None)
-        return render(request, self.template_name, {'form': form })
+        return render(request, self.template_name, {'form': form})
 
     # process form data
     def post(self, request):
