@@ -124,3 +124,5 @@ STATIC_URL = '/static/'
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 LOGIN_REDIRECT_URL = '/tasks/'
+
+AUTH_USER_MODEL = 'tasks.User'
