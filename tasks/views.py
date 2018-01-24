@@ -28,7 +28,12 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic import FormView, RedirectView
 
-
+################
+from rest_framework import viewsets
+from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+################
 
 from django.contrib.auth import login
 
@@ -118,4 +123,18 @@ class UserFormView(View):
                     login(request, user)
                     return redirect('tasks:index')
         return render(request, self.template_name, {'form': form})
-#
+
+
+class TaskViewSet(viewsets.ReadOnlyModelViewSet):
+    """ List all of the notes for a user """
+    permission_classes = (IsAuthenticated,)
+    serializer_class = TaskSerializer
+
+    def get_queryset(self):
+        return Task.objects.filter(owner=self.request.user).order_by('-pub_date')
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

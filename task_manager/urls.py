@@ -20,10 +20,22 @@ from django.conf.urls import url, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
+from rest_framework import routers
+from rest_framework.authtoken.views import obtain_auth_token
+
+router = routers.DefaultRouter()
+router.register(r'notes', TaskViewSet, 'Note')
+router.register(r'users', UserViewSet)
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^tasks/', include('tasks.urls')),
     url(r'^', include('tasks.urls_visitor')),
+
+    url(r'^api/', include(router.urls)), #rest api
 
 ]
 
